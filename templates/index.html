@@ -1,0 +1,19 @@
+<html>
+   <body>
+      <form method = "POST">
+         <p>IsIndex <input type = "text" name = "isIndex" /></p>
+         <p>Index <input type = "text" name = "index" /></p>
+         <p>Долгота <input type = "text" name = "geo_coords_longitude" /></p>
+         <p>Широта <input type = "text" name = "geo_coords_latitude" /></p>
+         <p>Range <input type ="text" name = "geo_range" /></p>
+         <p><input type = "submit" value = "submit" /></p>
+      </form>
+   </body>
+</html>
+
+
+<ul>   
+{% for item in data_from_server %}
+    <p>{{ item }} {{data_from_server.get(item)}}</p>
+{% endfor %}
+</ul>
