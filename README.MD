@@ -1,8 +1,8 @@
-# How to run:
+## How to run:
 
 **Install requirements via requirements.txt**
 ```sh
-pip install - r requirements.txt
+pip install -r requirements.txt
 ```
 **Set env variables**
 ```sh
@@ -18,7 +18,7 @@ python server.py
 
 
 
-## For Windows
+### For Windows
 
 
 > Use setx for create environment variable
