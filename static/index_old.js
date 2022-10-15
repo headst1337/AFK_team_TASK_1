@@ -8,6 +8,16 @@ function init(){
 		searchControlProvider: 'yandex#search'
 	});
 
+    var lat = document.getElementById('lat').textContent
+    var lon = document.getElementById('lon').textContent
+
+    var Point = new ymaps.Placemark([lat, lon], {
+        balloonContent: 'почтовое отделение'
+    }, {
+        preset: 'islands#icon',
+        iconColor: '#0095b6'
+    })
+    
 	// Создаем круг.
     var myCircle = new ymaps.Circle([
         // Координаты центра круга.
@@ -34,8 +44,6 @@ function init(){
 
     // Добавляем круг на карту.
     myMap.geoObjects.add(myCircle);
-}
 
-// function search() {
-	
-// }
+    myMap.geoObjects.add(Point);
+}

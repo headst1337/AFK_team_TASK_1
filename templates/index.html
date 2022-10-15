@@ -10,46 +10,53 @@
     <script src="https://api-maps.yandex.ru/2.1/?apikey=b904ca56-9db6-4eea-86e7-6997d3c763d7&lang=ru_RU"
         type="text/javascript">
         </script>
-    <script src="{{ url_for('static', filename='index.js') }}" type="text/javascript"></script>
+    {% block javascript %}
+    <script type="text/javascript">
+        {% include "index.js" %}
+    </script>
+    {% endblock %}
 </head>
 
 <body>
-    <div id="sidebar">
-        <form method="POST">
-            <p>IsIndex <input type="text" name="isIndex" /></p>
-            <p>Index <input type="text" name="index" /></p>
-            <p>Долгота <input type="text" name="geo_coords_longitude" /></p>
-            <p>Широта <input type="text" name="geo_coords_latitude" /></p>
-            <p>Range <input type="text" name="geo_range" /></p>
-            <p><input type="submit" value="найти почтовые отделения" /></p>
-        </form>
-    </div>
+    <div class="content">
+        <div id="sidebar">
+            <form method="POST">
+                <p>IsIndex <input type="text" name="isIndex" /></p>
+                <p>Index <input type="text" name="index" /></p>
+                <p>Широта <input type="text" name="geo_coords_longitude" value="55:02:29" /></p>
+                <p>Долгота <input type="text" name="geo_coords_latitude" value="82:56:04" /></p>
+                <p>Range <input type="text" name="geo_range" value="10" /></p>
+                <p><input type="submit" value="найти почтовые отделения" /></p>
+            </form>
+        </div>
 
-    <main>
         <div class="map-container">
             <div id="map"></div>
         </div>
-        <table class="table">
-            <tr>
-                <th>номер запроса</th>
-                <th>название</th>
-                <th>адрес</th>
-                <th>индекс</th>
-                <th>координаты</th>
-            </tr>
-            <tr>
-                {% set req_num = 1 %}
-                {% for name, address, index, coords in data_from_server %}
-                    <td class="">{{ req_num }}</td>
-                    <td>{{ name }}</td>
-                    <td>{{ address }}</td>
-                    <td>{{ index }}</td>
-                    <td>{{ coords }}</td>
-                    {% set req_num = req_num + 1 %}
-                {% endfor %}
-            </tr>
-        </table>
-    </main>
+    </div>
+    <table class="table">
+        <tr>
+            <th>номер запроса</th>
+            <th>название</th>
+            <th>адрес</th>
+            <th>индекс</th>
+            <th>широта</th>
+            <th>долгота</th>
+        </tr>
+        {% set req_num = 1 %}
+        {% for name, address, index, coords in data_from_server %}
+        <tr>
+            <td>{{ req_num }}</td>
+            <td>{{ name }}</td>
+            <td>{{ address }}</td>
+            <td>{{ index }}</td>
+            <td>{{ coords[0] }}</td>
+            <td>{{ coords[1] }}</td>
+            <!-- <td>{{ coords }}</td> -->
+            {% set req_num = req_num + 1 %}
+        </tr>
+        {% endfor %}
+    </table>
 </body>
 
 </html>
