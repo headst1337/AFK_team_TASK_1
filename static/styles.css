@@ -1,0 +1,24 @@
+.map-container {
+	position: absolute;
+	left: 300px;
+}
+#map {
+	right: 0;
+	height: 800px;
+	width: 800px;
+	padding: 0;
+	margin: 0;
+}
+#sidebar {
+	position: absolute;
+	width: 300px;
+	left: 0;
+	margin: 10px;
+}
+table {
+	position: absolute;
+	top: 800px;
+	margin: 20px;
+	max-width: 1100px;
+	text-align: center;
+}
