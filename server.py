@@ -46,7 +46,7 @@ def parse_data_from_api(data_from_api) -> dict:
             lo_coord = data_json["features"][i]["geometry"]["coordinates"][1] # Долгота
             coords = (lo_coord, la_coord)
             post_count += 1
-            data_dict[f"post{post_count}"] = name, address, index, coords
+            data_dict[f"{post_count}"] = name, address, index, coords
         else: continue
     return data_dict
 
