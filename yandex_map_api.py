@@ -16,9 +16,9 @@ class YandexMapApi:
 
     def get_by_range(self, center=(0, 0), spn=None) -> str:
         center = (Utils.dms_to_dd(center[0]), Utils.dms_to_dd(center[1]))
-        spn = (1 / 111.1111111111) * int(spn)
+        spn = (1 / 111.3)*int(spn)
         spn = ((center[0] + (spn)) - (center[0] - (spn)), (center[1] + (spn)) - (center[1] - (spn)))
         r = requests.get(self.__url__, params={"apikey": self.api_key, "lang": "ru_RU",
-                                               "ll": f"{center[1]},{center[0]}", "results": 500,
+                                               "ll": f"{center[1]},{center[0]}", "results": 500, "rspn": 1,
                                                "spn": f"{round(spn[1], 6)},{round(spn[0], 6)}", "text": "Отделение почтовой связи"})
         return r.text
