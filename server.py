@@ -1,7 +1,5 @@
 import json
 import os
-import turtle
-from wsgiref.handlers import read_environ
 from flask import Flask, render_template, request
 from yandex_map_api import YandexMapApi
 
