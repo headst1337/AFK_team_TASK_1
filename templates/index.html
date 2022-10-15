@@ -21,11 +21,10 @@
     <div class="content">
         <div id="sidebar">
             <form method="POST">
-                <p>IsIndex <input type="text" name="isIndex" /></p>
-                <p>Index <input type="text" name="index" /></p>
-                <p>Широта <input type="text" name="geo_coords_longitude" value="55:02:29" /></p>
-                <p>Долгота <input type="text" name="geo_coords_latitude" value="82:56:04" /></p>
-                <p>Range <input type="text" name="geo_range" value="10" /></p>
+                <div class="field"><label>Index</label> <input type="text" name="index" /></div>
+                <div class="field"><label>Широта</label> <input type="text" name="geo_coords_longitude" value="55:02:29" /></div>
+                <div class="field"><label>Долгота</label> <input type="text" name="geo_coords_latitude" value="82:56:04" /></div>
+                <div class="field"><label>Range</label> <input type="text" name="geo_range" value="10" /></div>
                 <p><input type="submit" value="найти почтовые отделения" /></p>
             </form>
         </div>
@@ -43,17 +42,15 @@
             <th>широта</th>
             <th>долгота</th>
         </tr>
-        {% set req_num = 1 %}
         {% for name, address, index, coords in data_from_server %}
         <tr>
-            <td>{{ req_num }}</td>
+            <td>{{ loop.index }}</td>
             <td>{{ name }}</td>
             <td>{{ address }}</td>
             <td>{{ index }}</td>
             <td>{{ coords[0] }}</td>
             <td>{{ coords[1] }}</td>
             <!-- <td>{{ coords }}</td> -->
-            {% set req_num = req_num + 1 %}
         </tr>
         {% endfor %}
     </table>
