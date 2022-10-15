@@ -18,21 +18,30 @@
 </head>
 
 <body>
-    <div class="content">
+    <nav class="text"><h3>AFK team</h3></nav>
+    
+    <div class="content text">
         <div id="sidebar">
-            <form method="POST">
-                <p>IsIndex <input type="text" name="isIndex" /></p>
-                <p>Index <input type="text" name="index" /></p>
-                <p>Широта <input type="text" name="geo_coords_longitude" value="55:02:29" /></p>
-                <p>Долгота <input type="text" name="geo_coords_latitude" value="82:56:04" /></p>
-                <p>Range <input type="text" name="geo_range" value="10" /></p>
-                <p><input type="submit" value="найти почтовые отделения" /></p>
+            <form method="POST" id="form">
+                <p>Поиск по индексу <input type="checkbox" name="isIndex" id="checkbox" /></p>
+                <p>Индекс:  <input type="text" name="index" /></p>
+                <p>Долгота: <input type="text" name="geo_coords_longitude" value="55:02:29" /></p>
+                <p>Широта: <input type="text" name="geo_coords_latitude" value="82:56:04" /></p>
+                <p>Радиус: <input type="text" name="geo_range" value="10" /></p>
+                <p><input type="submit" value="Найти" id="submit" /></p>
             </form>
         </div>
 
         <div class="map-container">
             <div id="map"></div>
+
+            <div class="boxes">
+                <div>Count: <h1>12</h1></div>
+                <div>Radius: <h1>12</h1></div>
+            </div>
+            
         </div>
+        
     </div>
     <table class="table">
         <tr>

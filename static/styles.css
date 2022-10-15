@@ -1,32 +1,121 @@
+.text {
+	font-family: '18vagroundedmbold.ttf';
+}
+@font-face {
+	font-family: '18vagroundedmbold.ttf';
+	src: local('asd'), url('/progs/webs/AFK_team_TASK_1/static/18vagroundedmbold.ttf') format('ttf');
+}
+body {
+	background-color: #1e2125;
+	color: antiquewhite;
+	/* font-family: '18vagroundedmbold.ttf';
+	src: local('asd'), url('/progs/webs/AFK_team_TASK_1/static/18vagroundedmbold.ttf') format('ttf'); */
+}
+
+nav {
+	text-align: center;
+}
+
 .map-container {
 	position: relative;
-	width: auto;
-	height: 800px;
+	width: 800px;
+	height: 700px;
 	float: left;
+	border: solid;
+	border-width: 7px;
+	border-color: #1e2125;
+
+	/* flex-wrap: wrap; */
+  	flex-direction: column;
+	display: flex;
+  	justify-content: space-between;
 }
 
 #map {
 	height: 100%;
 	width: 100%;
-}
+} 
 
 #sidebar {
+	font-size: 21px;
 	width: 300px;
-	height: auto;
+	height: 700px;
 	left: 0;
-	margin: 10px;
 	float: left;
+	background-color: #191c1f;
+	color: white;
+}
+
+form {
+	margin: 10px 10px;
+}
+form p {
+	margin-bottom: 50px;
+}
+
+#checkbox {
+	display: flex;
+	flex-wrap: wrap;
+	transform: scale(1.5);
+	float: none;
+	align-content: space-between;
+}
+
+form input {
+	max-width: 180px;
+	width: 180px;
+	float: right;
+}
+
+#submit {
+	height: 50px;
+}
+
+.content {
+	display: flex;
+  	justify-content: center;
+}
+
+.boxes {
+	font-size: 25px;
+	display: flex;
+	/* flex-wrap: wrap; */
+	padding: 50px;
+	justify-content: space-between;
+	background-color: #1e2125;
+}
+
+.boxes h1 {
+	font-size: 50px;
+	margin-top: 0;
+	margin-bottom: 0;
+	color: white;
+}
+
+.boxes div {
+	margin-right: 20px;
+	height: 100px;
+	width: 400px;
+	background-color: #292e33;
+	text-align: center;
+	align-items: center;
+	display: flex;
+	justify-content: space-evenly;
+	color: #949ba2;
+	border-radius: 10px;
 }
 
 table {
-	position: absolute;
+	display: flex;
+  	justify-content: center;
+	/* position: absolute; */
 	top: 800px;
-	margin: 20px;
+	margin: 50px;
 	max-width: 1100px;
 	text-align: center;
 }
 
-form {
+/* form {
     float: left;
 }
 
@@ -38,17 +127,12 @@ form input[type=submit]{
     clear: both;
     text-align: right;
     padding: 3px;
-}
+} */
 
-.content {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    grid-template-rows: 800px;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-}
 
-label{
+
+/* label{
     float: left;
     padding-right: 2px;
-}
+} */
+
