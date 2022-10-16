@@ -23,7 +23,7 @@ def index():
         data_from_api = get_data_from_api(isIndex=isIndex, index=index, geo_coords=geo_coords, geo_range=geo_range)
         data = parse_data_from_api(data_from_api)
 
-        return render_template('index.html', data_from_server=data)
+        return render_template('index.html', data_from_server=data, geo_range=int(geo_range)*1000)
     return render_template('index.html')
 
 
@@ -40,7 +40,6 @@ def get_data_from_api(**data) -> str:
 def parse_data_from_api(data_from_api) -> dict:
     data = json.loads(data_from_api).get("features")
     data_dict = []
-    id = 0
     for item in data:
         name = item["properties"]["CompanyMetaData"]["name"]
         address = item["properties"]["CompanyMetaData"]["address"]
@@ -48,7 +47,6 @@ def parse_data_from_api(data_from_api) -> dict:
         la_coord = item["geometry"]["coordinates"][0]  # Широта
         lo_coord = item["geometry"]["coordinates"][1]  # Долгота
         coords = (lo_coord, la_coord)
-        id += 1
         data_dict.append([name, address, index, coords])
     return data_dict
 
