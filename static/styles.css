@@ -6,14 +6,14 @@
 	src: local('asd'), url('/progs/webs/AFK_team_TASK_1/static/18vagroundedmbold.ttf') format('ttf');
 }
 body {
-	background-color: #1e2125;
-	color: antiquewhite;
-	/* font-family: '18vagroundedmbold.ttf';
-	src: local('asd'), url('/progs/webs/AFK_team_TASK_1/static/18vagroundedmbold.ttf') format('ttf'); */
+	/*background-color: #1e2125;*/
+	background: linear-gradient(130deg, #111111, #1e2125);
+	color: #FFFFFF;
 }
 
 nav {
 	text-align: center;
+	background: linear-gradient(0deg, black, transparent);
 }
 
 .map-container {
@@ -79,7 +79,6 @@ form input {
 .boxes {
 	font-size: 25px;
 	display: flex;
-	/* flex-wrap: wrap; */
 	padding: 50px;
 	justify-content: space-between;
 	background-color: #1e2125;
@@ -108,31 +107,8 @@ form input {
 table {
 	display: flex;
   	justify-content: center;
-	/* position: absolute; */
 	top: 800px;
-	margin: 50px;
+	color: #ffffff;
 	max-width: 1100px;
 	text-align: center;
 }
-
-/* form {
-    float: left;
-}
-
-form input[type=submit]{
-    margin-left: 9px;
-}
-
-.field {
-    clear: both;
-    text-align: right;
-    padding: 3px;
-} */
-
-
-
-/* label{
-    float: left;
-    padding-right: 2px;
-} */
-
