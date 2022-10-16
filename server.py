@@ -33,7 +33,12 @@ def index():
                                                                               "geo_coords_latitude_dd": Utils.dms_to_dd(geo_coords_latitude),
                                                                               "geo_range": int(geo_range*1000)})
         else:
-            return render_template('index.html', data_from_server=data, data={"index": index})
+            return render_template('index.html', data_from_server=data, data={"index": index,
+                                                                              "geo_coords_longitude_dms": "",
+                                                                              "geo_coords_latitude_dms": "",
+                                                                              "geo_coords_longitude_dd": "",
+                                                                              "geo_coords_latitude_dd": "",
+                                                                              "geo_range": ""})
     return render_template('index.html')
 
 

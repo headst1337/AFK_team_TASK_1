@@ -21,15 +21,35 @@
     <nav class="text"><h3>AFK team</h3></nav>
     <div class="content text">
         <div id="sidebar">
-                {% set index = data.get("index") %}
-                {% set lon = data.get("geo_coords_longitude_dms") %}
-                {% set lat = data.get("geo_coords_latitude_dms") %}
-                {% set range = data.get("geo_range") %}
             <form method="POST" id="form">
-                <p>Индекс:  <input type="text" name="index" value="{{ index }}" /></p>
-                <p>Долгота: <input type="text" name="geo_coords_longitude" value="{{ lon }}" /></p>
-                <p>Широта: <input type="text" name="geo_coords_latitude" value="{{ lat }}" /></p>
-                <p>Радиус: <input type="text" name="geo_range" value="{{ range//1000 }}" /></p>
+                {% if data %}
+                {% set index = data.get("index") %}
+                {% if not index %}
+                    {% set lon = data.get("geo_coords_longitude_dms") %}
+                    {% set lat = data.get("geo_coords_latitude_dms") %}
+                    {% set range = data.get("geo_range") %}
+                    {#
+                    {% if range == int(range) %}
+                    {{ range = int(range) }}
+                    {% endif %}
+                    #}
+                        <p>Индекс:  <input type="text" name="index"/></p>
+                        <p>Долгота: <input type="text" name="geo_coords_longitude" value="{{ lon }}" /></p>
+                        <p>Широта: <input type="text" name="geo_coords_latitude" value="{{ lat }}" /></p>
+                        <p>Радиус: <input type="text" name="geo_range" value="{{ range/1000 }}" /></p>
+                {% else %}
+                    <p>Индекс:  <input type="text" name="index" value="{{ index }}" /></p>
+                    <p>Долгота: <input type="text" name="geo_coords_longitude" /></p>
+                    <p>Широта: <input type="text" name="geo_coords_latitude" /></p>
+                    <p>Радиус: <input type="text" name="geo_range" /></p>
+                {% endif %}
+                {% endif %}
+                {% if not data%}
+                <p>Индекс:  <input type="text" name="index" /></p>
+                <p>Долгота: <input type="text" name="geo_coords_longitude" /></p>
+                <p>Широта: <input type="text" name="geo_coords_latitude" /></p>
+                <p>Радиус: <input type="text" name="geo_range" /></p>
+                {% endif %}
                 <p><input type="submit" value="Найти" id="submit" /></p>
             </form>
         </div>
@@ -38,8 +58,8 @@
             <div id="map"></div>
 
             <div class="boxes">
-                <div>Count: <h1>12</h1></div>
-                <div>Radius: <h1>12</h1></div>
+                <div>Count: <h1>{{ data_from_server|length }}</h1></div>
+                <div>Radius: <h1>{{ range/1000 }}</h1></div>
             </div>
             
         </div>
