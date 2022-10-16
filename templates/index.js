@@ -1,17 +1,8 @@
 ymaps.ready(init);
 
 function init(){
-    {% if data %}
-    {% set index = data.get("index") %}
-    {% if not index %}
-    {% set lon = data.get("geo_coords_longitude_dd") %}
-    {% set lat = data.get("geo_coords_latitude_dd") %}
-    {% set range = data.get("geo_range") %}
-    {% endif %}
-    {% endif %}
-
 	var myMap = new ymaps.Map("map", {
-		center: [parseFloat({{ lon }}), parseFloat({{ lat }})],
+		center: [55.04, 82.93],
 		zoom: 10
 	}, {
 		searchControlProvider: 'yandex#search'
@@ -21,7 +12,7 @@ function init(){
     {% for name, address, index, coords in data_from_server %}
 
     var Point = new ymaps.Placemark([{{ coords[0] }}, {{ coords[1] }}], {
-        balloonContent: '{{ address }}'
+        balloonContent: 'почтовое отделение'
     }, {
         preset: 'islands#icon',
         iconColor: '#0095b6'
@@ -30,11 +21,20 @@ function init(){
     myMap.geoObjects.add(Point);
     {% endfor %}
 
+    {% if data %}
+    {% set index = data.get("index") %}
+    {% if not index %}
+    {% set lon = data.get("geo_coords_longitude_dd") %}
+    {% set lat = data.get("geo_coords_latitude_dd") %}
+    {% set range = data.get("geo_range") %}
+    {% endif %}
+    {% endif %}
+
     {% if not index %}
 	// Создаем круг.
     var myCircle = new ymaps.Circle([
         // Координаты центра круга.
-        [parseFloat({{ lon }}), parseFloat({{ lat }})],
+        [{{ lon }}, {{ lat }}],
         // Радиус круга в метрах.
         {{ range }}
     ], {
@@ -54,8 +54,8 @@ function init(){
         // Ширина обводки в пикселях.
         strokeWidth: 5
     });
-    {% endif %}
 
     // Добавляем круг на карту.
     myMap.geoObjects.add(myCircle);
+    {% endif %}
 }
