@@ -16,21 +16,13 @@ export YANDEX_MAP_API="df372d7a-a7fd-49e1-9ae9-235bda72ddfd"
 ```
 > Note: `"config.ProductionConfig"` for production mode
 
-**Run**
-```sh
-python server.py
-```
-
-
-
 ### For Windows
-
 
 > Use setx for create environment variable
 
-for example:
 ```sh
 setx FLASK_CONFIG config.DevelopmentConfig
 setx YANDEX_MAP_API df372d7a-a7fd-49e1-9ae9-235bda72ddfd
+python server.py
 ```
 
