@@ -1,5 +1,10 @@
 ## How to run:
-
+**Install python**
+```sh
+sudo apt update
+sudo apt upgrade
+sudo apt install python3-pip
+```
 **Install requirements via requirements.txt**
 ```sh
 pip install -r requirements.txt
