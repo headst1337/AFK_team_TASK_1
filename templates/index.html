@@ -51,7 +51,6 @@
 
         <div class="map-container">
             <div id="map"></div>
-
             {% if data %}
             <div class="boxes">
                 <div>Найдено: <h1>{{ data_from_server|length }}</h1></div>
@@ -62,8 +61,8 @@
             {%endif%}
             
         </div>
-        
     </div>
+    {% if data %}
     <div class="content text">
     <table class="table" id="table">
         <tr>
@@ -87,6 +86,7 @@
         {% endfor %}
     </table>
     </div>
+    {%endif%}
 </body>
 
 </html>
