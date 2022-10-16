@@ -25,7 +25,7 @@ function init(){
     {% for name, address, index, coords in data_from_server %}
 
     var Point = new ymaps.Placemark([{{ coords[0] }}, {{ coords[1] }}], {
-        balloonContent: {{address}}
+        balloonContent: "{{address}}"
     }, {
         preset: 'islands#icon',
         iconColor: '#0095b6'
