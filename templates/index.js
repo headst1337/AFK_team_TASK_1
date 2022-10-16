@@ -21,14 +21,14 @@ function init(){
     myMap.geoObjects.add(Point);
     {% endfor %}
 
-    
+    {% set range = geo_range %}
     
 	// Создаем круг.
     var myCircle = new ymaps.Circle([
         // Координаты центра круга.
         [55.041389, 82.934444],
         // Радиус круга в метрах.
-        1000
+        {{ range }}
     ], {
         // Описываем свойства круга.
         // Содержимое балуна.

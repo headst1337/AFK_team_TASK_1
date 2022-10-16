@@ -19,14 +19,15 @@
 
 <body>
     <nav class="text"><h3>AFK team</h3></nav>
-    
     <div class="content text">
         <div id="sidebar">
+            
+            {% set range = geo_range %}
             <form method="POST" id="form">
                 <p>Индекс:  <input type="text" name="index" /></p>
                 <p>Долгота: <input type="text" name="geo_coords_longitude" value="55:02:29" /></p>
                 <p>Широта: <input type="text" name="geo_coords_latitude" value="82:56:04" /></p>
-                <p>Радиус: <input type="text" name="geo_range" value="10" /></p>
+                <p>Радиус: <input type="text" name="geo_range" value="{{ range//1000 }}" /></p>
                 <p><input type="submit" value="Найти" id="submit" /></p>
             </form>
         </div>
@@ -43,7 +44,7 @@
         
     </div>
     <div class="content text">
-    <table class="table">
+    <table class="table" id="table">
         <tr>
             <th>номер запроса</th>
             <th>название</th>
