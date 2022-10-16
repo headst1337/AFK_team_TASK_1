@@ -1,26 +1,6 @@
 ymaps.ready(init);
 
 function init(){
-	var myMap = new ymaps.Map("map", {
-		center: [55.04, 82.93],
-		zoom: 10
-	}, {
-		searchControlProvider: 'yandex#search'
-	});
-
-
-    {% for name, address, index, coords in data_from_server %}
-
-    var Point = new ymaps.Placemark([{{ coords[0] }}, {{ coords[1] }}], {
-        balloonContent: 'почтовое отделение'
-    }, {
-        preset: 'islands#icon',
-        iconColor: '#0095b6'
-    });
-
-    myMap.geoObjects.add(Point);
-    {% endfor %}
-
     {% if data %}
     {% set index = data.get("index") %}
     {% if not index %}
@@ -30,11 +10,31 @@ function init(){
     {% endif %}
     {% endif %}
 
+	var myMap = new ymaps.Map("map", {
+		center: [parseFloat({{ lon }}), parseFloat({{ lat }})],
+		zoom: 10
+	}, {
+		searchControlProvider: 'yandex#search'
+	});
+
+
+    {% for name, address, index, coords in data_from_server %}
+
+    var Point = new ymaps.Placemark([{{ coords[0] }}, {{ coords[1] }}], {
+        balloonContent: '{{ address }}'
+    }, {
+        preset: 'islands#icon',
+        iconColor: '#0095b6'
+    });
+
+    myMap.geoObjects.add(Point);
+    {% endfor %}
+
     {% if not index %}
 	// Создаем круг.
     var myCircle = new ymaps.Circle([
         // Координаты центра круга.
-        [{{ lon }}, {{ lat }}],
+        [parseFloat({{ lon }}), parseFloat({{ lat }})],
         // Радиус круга в метрах.
         {{ range }}
     ], {
