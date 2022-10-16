@@ -25,12 +25,15 @@ def index():
             geo_range = 0
         data_from_api = get_data_from_api(index=index, geo_coords=geo_coords, geo_range=geo_range)
         data = parse_data_from_api(data_from_api)
-        return render_template('index.html', data_from_server=data, data={"index": index,
-                                                                          "geo_coords_longitude_dms": geo_coords_longitude,
-                                                                          "geo_coords_latitude_dms": geo_coords_latitude,
-                                                                          "geo_coords_longitude_dd": Utils.dms_to_dd(geo_coords_longitude),
-                                                                          "geo_coords_latitude_dd": Utils.dms_to_dd(geo_coords_latitude),
-                                                                          "geo_range": int(geo_range*1000)})
+        if not index:
+            return render_template('index.html', data_from_server=data, data={"index": index,
+                                                                              "geo_coords_longitude_dms": geo_coords_longitude,
+                                                                              "geo_coords_latitude_dms": geo_coords_latitude,
+                                                                              "geo_coords_longitude_dd": Utils.dms_to_dd(geo_coords_longitude),
+                                                                              "geo_coords_latitude_dd": Utils.dms_to_dd(geo_coords_latitude),
+                                                                              "geo_range": int(geo_range*1000)})
+        else:
+            return render_template('index.html', data_from_server=data, data={"index": index})
     return render_template('index.html')
 
 
