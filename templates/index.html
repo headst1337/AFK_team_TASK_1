@@ -21,12 +21,14 @@
     <nav class="text"><h3>AFK team</h3></nav>
     <div class="content text">
         <div id="sidebar">
-            
-            {% set range = geo_range %}
+                {% set index = data.get("index") %}
+                {% set lon = data.get("geo_coords_longitude_dms") %}
+                {% set lat = data.get("geo_coords_latitude_dms") %}
+                {% set range = data.get("geo_range") %}
             <form method="POST" id="form">
-                <p>Индекс:  <input type="text" name="index" /></p>
-                <p>Долгота: <input type="text" name="geo_coords_longitude" value="55:02:29" /></p>
-                <p>Широта: <input type="text" name="geo_coords_latitude" value="82:56:04" /></p>
+                <p>Индекс:  <input type="text" name="index" value="{{ index }}" /></p>
+                <p>Долгота: <input type="text" name="geo_coords_longitude" value="{{ lon }}" /></p>
+                <p>Широта: <input type="text" name="geo_coords_latitude" value="{{ lat }}" /></p>
                 <p>Радиус: <input type="text" name="geo_range" value="{{ range//1000 }}" /></p>
                 <p><input type="submit" value="Найти" id="submit" /></p>
             </form>

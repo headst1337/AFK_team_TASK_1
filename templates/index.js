@@ -21,12 +21,15 @@ function init(){
     myMap.geoObjects.add(Point);
     {% endfor %}
 
-    {% set range = geo_range %}
+    
+    {% set lon = data.get("geo_coords_longitude_dd") %}
+    {% set lat = data.get("geo_coords_latitude_dd") %}
+    {% set range = data.get("geo_range") %}
     
 	// Создаем круг.
     var myCircle = new ymaps.Circle([
         // Координаты центра круга.
-        [55.041389, 82.934444],
+        [{{ lon }}, {{ lat }}],
         // Радиус круга в метрах.
         {{ range }}
     ], {
