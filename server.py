@@ -7,12 +7,12 @@ from utils import Utils
 from yandex_map_api import YandexMapApi
 
 app = Flask(__name__)
-app.config.from_object(config.DevelopmentConfig)
+# app.config.from_object(config.DevelopmentConfig)
 
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    if request.method == 'POST':
+    if request.method == 'POST' and Utils.form_validation(request.form):
         # Получение данных с формы (ИЛЯ!!!)
         index = request.form.get('index')
         geo_coords_longitude = request.form.get('geo_coords_longitude')  # Longitude - долгота
@@ -25,6 +25,8 @@ def index():
             geo_range = 0
         data_from_api = get_data_from_api(index=index, geo_coords=geo_coords, geo_range=geo_range)
         data = parse_data_from_api(data_from_api)
+        if not data:
+            return render_template('index.html')
         if not index:
             return render_template('index.html', data_from_server=data, data={"index": index,
                                                                               "geo_coords_longitude_dms": geo_coords_longitude,
@@ -53,7 +55,10 @@ def get_data_from_api(**data) -> str:
 
 
 def parse_data_from_api(data_from_api) -> dict:
-    data = json.loads(data_from_api).get("features")
+    data = json.loads(data_from_api)
+    if data.get("statusCode"):
+        return None
+    data = data.get("features")
     data_dict = []
     for item in data:
         name = item["properties"]["CompanyMetaData"]["name"]
@@ -67,4 +72,4 @@ def parse_data_from_api(data_from_api) -> dict:
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0", port=3000)

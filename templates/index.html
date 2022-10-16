@@ -28,15 +28,10 @@
                     {% set lon = data.get("geo_coords_longitude_dms") %}
                     {% set lat = data.get("geo_coords_latitude_dms") %}
                     {% set range = data.get("geo_range") %}
-                    {#
-                    {% if range == int(range) %}
-                    {{ range = int(range) }}
-                    {% endif %}
-                    #}
                         <p>Индекс:  <input type="text" name="index"/></p>
                         <p>Долгота: <input type="text" name="geo_coords_longitude" value="{{ lon }}" /></p>
                         <p>Широта: <input type="text" name="geo_coords_latitude" value="{{ lat }}" /></p>
-                        <p>Радиус: <input type="text" name="geo_range" value="{{ range/1000 }}" /></p>
+                        <p>Радиус: <input type="text" name="geo_range" value="{{ range//1000 }}" /></p>
                 {% else %}
                     <p>Индекс:  <input type="text" name="index" value="{{ index }}" /></p>
                     <p>Долгота: <input type="text" name="geo_coords_longitude" /></p>
@@ -58,8 +53,10 @@
             <div id="map"></div>
 
             <div class="boxes">
-                <div>Count: <h1>{{ data_from_server|length }}</h1></div>
-                <div>Radius: <h1>{{ range/1000 }}</h1></div>
+                <div>Найдено: <h1>{{ data_from_server|length }}</h1></div>
+                {% if data and not index%}
+                <div>Радиус: <h1>{{ range/1000 }}</h1></div>
+                {%endif%}
             </div>
             
         </div>
