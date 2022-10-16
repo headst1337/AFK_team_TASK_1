@@ -1,8 +1,21 @@
 ymaps.ready(init);
 
 function init(){
+    {% if data %}
+    {% set index = data.get("index") %}
+    {% if not index %}
+    {% set lon = data.get("geo_coords_longitude_dd") %}
+    {% set lat = data.get("geo_coords_latitude_dd") %}
+    {% set range = data.get("geo_range") %}
+    {% endif %}
+    {% endif %}
+
 	var myMap = new ymaps.Map("map", {
-		center: [55.04, 82.93],
+	    {% if index%}
+		center: [{{data_from_server[0][3][0]}}, {{data_from_server[0][3][1]}}],
+		{%else%}
+		center: [parseFloat({{ lon }}), parseFloat({{ lat }})],
+		{% endif %}
 		zoom: 10
 	}, {
 		searchControlProvider: 'yandex#search'
@@ -20,15 +33,6 @@ function init(){
 
     myMap.geoObjects.add(Point);
     {% endfor %}
-
-    {% if data %}
-    {% set index = data.get("index") %}
-    {% if not index %}
-    {% set lon = data.get("geo_coords_longitude_dd") %}
-    {% set lat = data.get("geo_coords_latitude_dd") %}
-    {% set range = data.get("geo_range") %}
-    {% endif %}
-    {% endif %}
 
     {% if not index %}
 	// Создаем круг.
