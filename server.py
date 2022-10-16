@@ -69,4 +69,4 @@ def parse_data_from_api(data_from_api) -> dict:
     return data_dict
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=3000)
+    app.run()
