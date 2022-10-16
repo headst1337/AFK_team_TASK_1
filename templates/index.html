@@ -52,12 +52,14 @@
         <div class="map-container">
             <div id="map"></div>
 
+            {% if data %}
             <div class="boxes">
                 <div>Найдено: <h1>{{ data_from_server|length }}</h1></div>
                 {% if data and not index%}
                 <div>Радиус: <h1>{{ range/1000 }}</h1></div>
                 {%endif%}
             </div>
+            {%endif%}
             
         </div>
         
