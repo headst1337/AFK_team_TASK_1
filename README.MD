@@ -12,7 +12,7 @@ pip install -r requirements.txt
 **Set env variables**
 ```sh
 export FLASK_CONFIG="config.DevelopmentConfig"
-export YANDEX_MAP_API="a1910da4-923c-41a1-b952-e3de90a6859a"
+export YANDEX_MAP_API="df372d7a-a7fd-49e1-9ae9-235bda72ddfd"
 ```
 > Note: `"config.ProductionConfig"` for production mode
 
